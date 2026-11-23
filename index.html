@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Boy — Rochdi Menaja ♡</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-cream: #fdf2f0;
+            --bg-soft-pink: #fce4e4;
+            --accent-crimson: #9e1b32;
+            --accent-crimson-dark: #7a1225;
+            --accent-pink: #f4a5ae;
+            --brush-pink: #f8c3c8;
+            --text-dark: #5c1624;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: radial-gradient(circle at top, #fff6f5 0%, var(--bg-cream) 60%, var(--bg-soft-pink) 100%);
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            position: relative;
+            padding-bottom: 70px;
+        }
+
+        /* قلوب متناثرة في الخلفية */
+        .bg-hearts {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bg-heart {
+            position: absolute;
+            user-select: none;
+            opacity: 0.85;
+            animation: gentleFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% { transform: translateY(0px) rotate(-4deg); }
+            50% { transform: translateY(-10px) rotate(4deg); }
+        }
+
+        /* شريط التنقل العلوي */
+        .top-nav {
+            position: relative;
+            z-index: 10;
+            max-width: 720px;
+            margin: 24px auto 10px;
+            padding: 0 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            padding: 8px 22px;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .nav-btn.active {
+            background: var(--accent-crimson);
+            color: var(--white);
+            box-shadow: 0 6px 16px rgba(158, 27, 50, 0.25);
+        }
+
+        .nav-btn:hover:not(.active) {
+            background: rgba(158, 27, 50, 0.1);
+        }
+
+        /* الحاوية الرئيسية */
+        .container {
+            position: relative;
+            z-index: 5;
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 15px 22px;
+        }
+
+        .view {
+            display: none;
+            animation: fadeSlide 0.45s ease;
+        }
+
+        .view.active {
+            display: block;
+        }
+
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(14px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- الشاشة الأولى: Birthday Boy --- */
+        .hero-box {
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        .banner-wrapper {
+            position: relative;
+            display: inline-block;
+            margin: 18px auto 12px;
+            padding: 26px 46px;
+            background: #fbd6d8;
+            border: 2.5px dashed var(--accent-crimson);
+            border-radius: 42px 24px 44px 28px;
+            box-shadow: 0 10px 25px rgba(158, 27, 50, 0.08);
+        }
+
+        .bow-icon {
+            position: absolute;
+            top: -28px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2.6rem;
+            line-height: 1;
+            filter: drop-shadow(0 3px 4px rgba(0,0,0,0.1));
+        }
+
+        .banner-title {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(3rem, 8vw, 4.4rem);
+            font-weight: 700;
+            color: var(--accent-crimson);
+            line-height: 1.05;
+        }
+
+        .banner-heart {
+            font-size: 1.5rem;
+            color: var(--accent-crimson);
+            margin-top: 4px;
+        }
+
+        /* كعكة عيد الميلاد المرسومة بـ SVG */
+        .cake-section {
+            margin: 18px auto 14px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .cake-svg {
+            width: 170px;
+            height: auto;
+            overflow: visible;
+        }
+
+        .flame {
+            transform-origin: center bottom;
+            animation: flicker 0.45s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0% { transform: scale(1) rotate(-2deg); }
+            100% { transform: scale(1.12) rotate(3deg); }
+        }
+
+        .wish-text {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(1.6rem, 4.2vw, 2.2rem);
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 10px auto 22px;
+            max-width: 480px;
+            line-height: 1.25;
+        }
+
+        .cta-btn {
+            background: var(--accent-crimson);
+            color: var(--white);
+            border: none;
+            font-family: 'Caveat', cursive;
+            font-size: 1.75rem;
+            font-weight: 700;
+            padding: 10px 34px;
+            border-radius: 999px;
+            cursor: pointer;
+            box-shadow: 0 10px 22px rgba(158, 27, 50, 0.28);
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .cta-btn:hover {
+            background: var(--accent-crimson-dark);
+            transform: translateY(-2px) scale(1.03);
+        }
+
+        /* --- الشاشة الثانية: رسالة الحب والصورة --- */
+        .back-row {
+            margin-bottom: 16px;
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.75);
+            border: 1.5px solid rgba(158, 27, 50, 0.25);
+            color: var(--text-dark);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 7px 16px;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .back-btn:hover {
+            background: var(--white);
+            transform: translateX(-2px);
+        }
+
+        .message-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.15fr;
+            gap: 28px;
+            align-items: center;
+        }
+
+        @media (max-width: 700px) {
+            .message-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        .polaroid-wrap {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .polaroid-card {
+            background: var(--white);
+            padding: 12px 12px 26px;
+            border-radius: 6px;
+            box-shadow: 0 14px 30px rgba(92, 22, 36, 0.16);
+            transform: rotate(-3.5deg);
+            max-width: 310px;
+            width: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .polaroid-card:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        .polaroid-card img {
+            width: 100%;
+            height: 290px;
+            object-fit: cover;
+            border-radius: 3px;
+            display: block;
+        }
+
+        .doodle-heart-top {
+            position: absolute;
+            top: -18px;
+            right: 18%;
+            font-size: 2rem;
+            color: var(--accent-crimson);
+            transform: rotate(12deg);
+        }
+
+        .letter-col {
+            padding: 8px 6px;
+        }
+
+        .letter-heading {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(2.1rem, 5vw, 2.8rem);
+            font-weight: 700;
+            color: var(--accent-crimson);
+            margin-bottom: 10px;
+        }
+
+        .letter-body {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(1.45rem, 3.4vw, 1.85rem);
+            line-height: 1.35;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        .brush-badge {
+            display: inline-block;
+            background: linear-gradient(105deg, transparent 4%, var(--brush-pink) 4%, var(--brush-pink) 96%, transparent 96%);
+            padding: 8px 24px;
+            border-radius: 12px 4px 14px 6px;
+            transform: rotate(-2deg);
+        }
+
+        .brush-badge span {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(1.7rem, 4vw, 2.2rem);
+            font-weight: 700;
+            color: var(--accent-crimson);
+        }
+
+        .swirl-bottom {
+            margin-top: 14px;
+            font-size: 1.6rem;
+            color: var(--accent-crimson);
+            letter-spacing: 2px;
+        }
+
+        /* --- الشاشة الثالثة: For You --- */
+        .special-card {
+            background: rgba(255, 255, 255, 0.82);
+            border: 2px solid rgba(158, 27, 50, 0.15);
+            border-radius: 26px;
+            padding: 32px 24px;
+            text-align: center;
+            box-shadow: 0 14px 30px rgba(158, 27, 50, 0.08);
+        }
+
+        .special-title {
+            font-family: 'Caveat', cursive;
+            font-size: 2.6rem;
+            color: var(--accent-crimson);
+            margin-bottom: 12px;
+        }
+
+        .special-note {
+            font-family: 'Caveat', cursive;
+            font-size: 1.7rem;
+            line-height: 1.4;
+            margin-bottom: 22px;
+        }
+
+        /* الموجة السفلية العنابية */
+        .bottom-wave {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 46px;
+            background: var(--accent-crimson);
+            border-radius: 50% 50% 0 0 / 28px 28px 0 0;
+            z-index: 8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- قلوب موزعة في الخلفية -->
+    <div class="bg-hearts" id="bgHearts"></div>
+
+    <!-- شريط التنقل -->
+    <nav class="top-nav">
+        <button class="nav-btn active" data-target="homeView" onclick="switchView('homeView', this)">Home</button>
+        <button class="nav-btn" data-target="loveView" onclick="switchView('loveView', this)">My Love</button>
+        <button class="nav-btn" data-target="forYouView" onclick="switchView('forYouView', this)">For You</button>
+    </nav>
+
+    <main class="container">
+
+        <!-- 1. قسم البداية -->
+        <section id="homeView" class="view active">
+            <div class="hero-box">
+                <div class="banner-wrapper">
+                    <div class="bow-icon">🎀</div>
+                    <h1 class="banner-title">Birthday Boy</h1>
+                    <div class="banner-heart">♡</div>
+                </div>
+
+                <!-- كعكة عيد الميلاد -->
+                <div class="cake-section">
+                    <svg class="cake-svg" viewBox="0 0 200 165" xmlns="http://www.w3.org/2000/svg">
+                        <!-- الصحن -->
+                        <ellipse cx="100" cy="148" rx="74" ry="10" fill="#fce4e4" stroke="#9e1b32" stroke-width="2.5"/>
+                        <!-- قاعدة الكعكة -->
+                        <rect x="44" y="84" width="112" height="60" rx="14" fill="#fff7f7" stroke="#9e1b32" stroke-width="2.5"/>
+                        <!-- طبقة التغليف العلوية -->
+                        <path d="M44 96 Q58 112 72 96 Q86 114 100 96 Q114 112 128 96 Q142 112 156 96 L156 86 Q100 76 44 86 Z" fill="#f7b5be" stroke="#9e1b32" stroke-width="2"/>
+                        <!-- قلوب صغيرة على الكعكة -->
+                        <circle cx="72" cy="122" r="3" fill="#9e1b32"/>
+                        <circle cx="100" cy="122" r="4" fill="#9e1b32"/>
+                        <circle cx="128" cy="122" r="3" fill="#9e1b32"/>
+                        <!-- الشموع الخمس -->
+                        <g fill="#fff0f2" stroke="#9e1b32" stroke-width="2">
+                            <rect x="60" y="54" width="7" height="30" rx="2"/>
+                            <rect x="78" y="48" width="7" height="36" rx="2"/>
+                            <rect x="96.5" y="44" width="7" height="40" rx="2"/>
+                            <rect x="115" y="48" width="7" height="36" rx="2"/>
+                            <rect x="133" y="54" width="7" height="30" rx="2"/>
+                        </g>
+                        <!-- شعلات الشموع -->
+                        <g class="flame">
+                            <path d="M63.5 40 C68 46, 67 52, 63.5 53 C60 52, 59 46, 63.5 40 Z" fill="#ff9f1c"/>
+                            <path d="M81.5 34 C86 40, 85 46, 81.5 47 C78 46, 77 40, 81.5 34 Z" fill="#ff9f1c"/>
+                            <path d="M100 30 C104.5 36, 103.5 42, 100 43 C96.5 42, 95.5 36, 100 30 Z" fill="#ff9f1c"/>
+                            <path d="M118.5 34 C123 40, 122 46, 118.5 47 C115 46, 114 40, 118.5 34 Z" fill="#ff9f1c"/>
+                            <path d="M136.5 40 C141 46, 140 52, 136.5 53 C133 52, 132 46, 136.5 40 Z" fill="#ff9f1c"/>
+                        </g>
+                    </svg>
+                </div>
+
+                <p class="wish-text">
+                    Wishing you all the happiness in the world! ♡
+                </p>
+
+                <button class="cta-btn" onclick="openMessagePage()">
+                    Tap to see my message ♡
+                </button>
+            </div>
+        </section>
+
+        <!-- 2. قسم الرسالة والصورة (مثل النصف الأيمن في الصورة) -->
+        <section id="loveView" class="view">
+            <div class="back-row">
+                <button class="back-btn" onclick="switchView('homeView', document.querySelector('[data-target=\"homeView\"]'))">
+                    ← Back
+                </button>
+            </div>
+
+            <div class="message-grid">
+                <div class="polaroid-wrap">
+                    <div class="doodle-heart-top">♡</div>
+                    <div class="polaroid-card">
+                        <!-- ضع صورتكما هنا باسم photo.jpg داخل نفس المجلد -->
+                        <img id="couplePhoto" src="photo.jpg" alt="Rochdi and Me" onerror="this.src='https://placehold.co/400x420/fce4e4/9e1b32?text=Put+photo.jpg+Here'">
+                    </div>
+                </div>
+
+                <div class="letter-col">
+                    <h2 class="letter-heading">I love you so much! ♡</h2>
+                    <p class="letter-body">
+                        You make my life brighter, my heart happier, and my days better. I'm so grateful to have you by my side, and I truly cherish you. You are my favorite person, my peace, and my everything. ♡
+                    </p>
+                    <div class="brush-badge">
+                        <span>I love you, and I always will. ♡</span>
+                    </div>
+                    <div class="swirl-bottom">♡ ♡</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. قسم For You -->
+        <section id="forYouView" class="view">
+            <div class="back-row">
+                <button class="back-btn" onclick="switchView('homeView', document.querySelector('[data-target=\"homeView\"]'))">
+                    ← Back
+                </button>
+            </div>
+
+            <div class="special-card">
+                <h2 class="special-title">For You, Rochdi Menaja ♡</h2>
+                <p class="special-note">
+                    Happy Birthday to the one who turns ordinary moments into my favorite memories. May every year bring you peace, smiles, and everything your heart wishes for. ♡
+                </p>
+                <button class="cta-btn" onclick="celebrateHearts()">Celebrate Again ♡</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- الشريط السفلي -->
+    <footer class="bottom-wave">♡</footer>
+
+    <script>
+        const bgHeartsContainer = document.getElementById('bgHearts');
+        const heartIcons = ['❤️', '💖', '💕', '💗', '🤍'];
+
+        // توزيع قلوب ثابتة ومتحركة بلطف في الخلفية كما في التصميم
+        const positions = [
+            { top: '12%', left: '5%', size: '1.3rem', delay: '0s' },
+            { top: '14%', right: '6%', size: '1.3rem', delay: '0.8s' },
+            { top: '24%', left: '12%', size: '1.1rem', delay: '1.5s' },
+            { top: '28%', right: '11%', size: '1.2rem', delay: '0.4s' },
+            { top: '52%', left: '4%', size: '1.4rem', delay: '1.1s' },
+            { top: '55%', right: '5%', size: '1.3rem', delay: '1.9s' },
+            { top: '68%', left: '14%', size: '1rem', delay: '0.6s' },
+            { top: '72%', right: '13%', size: '1.1rem', delay: '1.3s' }
+        ];
+
+        positions.forEach((pos, idx) => {
+            const el = document.createElement('div');
+            el.className = 'bg-heart';
+            el.textContent = heartIcons[idx % heartIcons.length];
+            el.style.fontSize = pos.size;
+            el.style.animationDelay = pos.delay;
+            if (pos.top) el.style.top = pos.top;
+            if (pos.left) el.style.left = pos.left;
+            if (pos.right) el.style.right = pos.right;
+            bgHeartsContainer.appendChild(el);
+        });
+
+        function switchView(viewId, btnEl) {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.getElementById(viewId).classList.add('active');
+
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            if (btnEl) {
+                btnEl.classList.add('active');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openMessagePage() {
+            const loveBtn = document.querySelector('[data-target="loveView"]');
+            switchView('loveView', loveBtn);
+            spawnBurstHearts(12);
+        }
+
+        function celebrateHearts() {
+            spawnBurstHearts(18);
+        }
+
+        function spawnBurstHearts(count) {
+            for (let i = 0; i < count; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.textContent = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+                    heart.style.position = 'fixed';
+                    heart.style.left = (Math.random() * 80 + 10) + 'vw';
+                    heart.style.bottom = '20px';
+                    heart.style.fontSize = (Math.random() * 18 + 16) + 'px';
+                    heart.style.pointerEvents = 'none';
+                    heart.style.zIndex = '30';
+                    heart.style.transition = 'transform 1.6s ease-out, opacity 1.6s ease-out';
+                    document.body.appendChild(heart);
+
+                    requestAnimationFrame(() => {
+                        heart.style.transform = `translateY(-${Math.random() * 260 + 140}px) translateX(${(Math.random() - 0.5) * 90}px) rotate(${(Math.random() - 0.5) * 45}deg)`;
+                        heart.style.opacity = '0';
+                    });
+
+                    setTimeout(() => heart.remove(), 1700);
+                }, i * 60);
+            }
+        }
+    </script>
+</body>
+</html>
